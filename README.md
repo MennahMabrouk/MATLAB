@@ -10,6 +10,11 @@ This repository contains MATLAB scripts and examples covering various fundamenta
 
 2. **HillClimbing.mlx**:
    - Implements the hill-climbing optimization algorithm to minimize the Rastrigin function, showcasing an example of numerical optimization in MATLAB.
+  
+## Playlist
+For a detailed explanation of both files, check out the accompanying Arabic YouTube playlist:
+[YouTube Playlist](https://www.youtube.com/playlist?list=PL6RZMdqA17_HGPqF_ycAlHTok_XHVByqn)
+
 
 ## Usage
 - Clone the repository to your local machine using `git clone`.
