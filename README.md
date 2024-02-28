@@ -17,6 +17,10 @@ This repository contains MATLAB scripts and examples covering various fundamenta
 - Run the scripts to see examples and functionalities demonstrated.
 - Adjust parameters and experiment with the code for your specific use cases.
 
+## How to Install MATLAB
+- MATLAB can be obtained from the MathWorks website ([MathWorks - MATLAB](https://www.mathworks.com/products/matlab.html)).
+- Follow the instructions provided on the website to download and install MATLAB on your operating system.
+
 ## Contributions
 Contributions are welcome! If you have any improvements, additional examples, or bug fixes, feel free to open a pull request or create an issue.
 
