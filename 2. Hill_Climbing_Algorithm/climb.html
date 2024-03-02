@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html xmlns="http://www.w3.org/1999/xhtml"><head><base href="https://mosh-prodc-us-east-1.mathworks.com/static/SgycHuXQ/HTMLPagetp2ff1a041aeab4416a7828616af12b43b/climb.html?mre=https%3A%2F%2Fmosh-prodc-us-east-1.mathworks.com%2F" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>climb</title><meta name="generator" content="MATLAB 23.2" /><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" /><meta name="DC.date" content="2024-03-02" /><meta name="DC.source" content="climb.m" /><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head>
+
+
+
+
+
+
+
+
+
+
+<body class="mw-theme-dark" style="">
+<div class="content">
+<pre class="codeinput"><span class="comment">%The climb function initializes the range for the X dimension and generates two initial random solution points (initial_solution_1 and initial_solution_2) within this range. It then conducts hill climbing optimization with a fixed step size and maximum iterations, utilizing these two points to find the best solutions. Finally, it displays the best solutions and their corresponding values before plotting the optimization process.</span>
+
+<span class="keyword">function</span> climb()
+    <span class="comment">% Define the range for X dimension</span>
+    range_x = [-2, 2];
+
+    <span class="comment">% Generate initial solution points within specified range for X</span>
+    initial_solution_1 = rand() * (range_x(2) - range_x(1)) + range_x(1);
+    initial_solution_2 = rand() * (range_x(2) - range_x(1)) + range_x(1);
+
+    step_size = 0.1;
+    max_iteration = 100;
+
+    <span class="comment">% Start hill climbing</span>
+    [final_solution_1, final_solution_2] = hill_climbing_minimize(@rastrigin, initial_solution_1, initial_solution_2, step_size, max_iteration);
+
+    <span class="comment">% Display best solutions and values</span>
+    disp(<span class="string">'Best solution 1:'</span>);
+    disp(final_solution_1);
+
+    disp(<span class="string">'Best value 1:'</span>);
+    disp(rastrigin(final_solution_1));
+
+    disp(<span class="string">'Best solution 2:'</span>);
+    disp(final_solution_2);
+
+    disp(<span class="string">'Best value 2:'</span>);
+    disp(rastrigin(final_solution_2));
+
+    <span class="comment">% Plot final result</span>
+    plot_environment(final_solution_1, final_solution_2);
+<span class="keyword">end</span>
+
+<span class="comment">% The function hill_climbing_minimize iteratively updates two solutions (current_solution_1 and current_solution_2) by adding random noise to them. It evaluates the cost of these solutions using the provided cost function and updates them if a new solution improves the cost. After a specified number of iterations, it returns the final optimized solutions.</span>
+
+<span class="keyword">function</span> [final_solution_1, final_solution_2] = hill_climbing_minimize(cost_function, initial_solution_1, initial_solution_2, step_size, max_iteration)
+    current_solution_1 = initial_solution_1;
+    current_solution_2 = initial_solution_2;
+
+    <span class="keyword">for</span> iter = 1:max_iteration
+        <span class="comment">% Generate new solutions</span>
+        new_solution_1 = current_solution_1 + step_size * randn();
+        new_solution_2 = current_solution_2 + step_size * randn();
+
+        <span class="comment">% Evaluate new solutions</span>
+        new_value_1 = cost_function(new_solution_1);
+        new_value_2 = cost_function(new_solution_2);
+
+        <span class="comment">% Update solutions if new solution is better</span>
+        <span class="keyword">if</span> new_value_1 &lt; cost_function(current_solution_1)
+            current_solution_1 = new_solution_1;
+        <span class="keyword">end</span>
+        <span class="keyword">if</span> new_value_2 &lt; cost_function(current_solution_2)
+            current_solution_2 = new_solution_2;
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+
+    <span class="comment">% Return the final solutions</span>
+    final_solution_1 = current_solution_1;
+    final_solution_2 = current_solution_2;
+<span class="keyword">end</span>
+
+<span class="comment">% The plot_environment function visualizes the optimization process of the Rastrigin function by plotting it along with two specified points (point1 and point2). It generates 100 equally spaced values for the x-axis, evaluates the Rastrigin function for these values, and plots it. Additionally, it plots point1 and point2 as red and blue circles, respectively, on the function curve. Finally, it labels the axes, adds a title to the plot, and includes a legend indicating the Rastrigin function, Point 1, and Point 2.</span>
+
+<span class="keyword">function</span> plot_environment(point1, point2)
+    x = linspace(-2, 2, 100);
+    y = rastrigin(x);
+
+    figure;
+    plot(x, y, <span class="string">'k'</span>);
+    hold <span class="string">on</span>;
+    plot(point1, rastrigin(point1), <span class="string">'ro'</span>, <span class="string">'MarkerFaceColor'</span>, <span class="string">'r'</span>, <span class="string">'MarkerSize'</span>, 10);
+    plot(point2, rastrigin(point2), <span class="string">'bo'</span>, <span class="string">'MarkerFaceColor'</span>, <span class="string">'b'</span>, <span class="string">'MarkerSize'</span>, 10);
+    hold <span class="string">off</span>;
+    xlabel(<span class="string">'x'</span>);
+    ylabel(<span class="string">'f(x)'</span>);
+    title(<span class="string">'Optimization Process'</span>);
+    legend(<span class="string">'Rastrigin Function'</span>, <span class="string">'Point 1'</span>, <span class="string">'Point 2'</span>);
+<span class="keyword">end</span>
+
+<span class="comment">% The rastrigin function calculates the value of the Rastrigin function for a given input x. It involves a standard mathematical expression that incorporates squaring x, applying cosine, and adding constants. This function encapsulates the Rastrigin formula, providing a convenient way to evaluate it for optimization tasks.</span>
+
+<span class="keyword">function</span> value = rastrigin(x)
+    <span class="comment">% Rastrigin function</span>
+    A = 10;
+    value = A + x.^2 - A * cos(2 * pi * x);
+<span class="keyword">end</span>
+</pre>
+<pre class="codeoutput">Best solution 1:
+   -0.0058
+
+Best value 1:
+    0.0066
+
+Best solution 2:
+    1.9938
+
+Best value 2:
+    3.9829
+
+</pre>
+<img vspace="5" hspace="5" src="climb_01.png" alt="" /> <p class="footer">
+<br />
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB® R2023b</a>
+<br />
+</p>
+</div>
+
+
+
+</body></html>
